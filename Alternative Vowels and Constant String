@@ -1,0 +1,88 @@
+import java.util.*;
+import java.util.Random;
+
+
+public class ABC
+{
+    static int MAX =26;
+     static char checkVowel(char c)
+{
+    char flag = 'n';
+    if(c=='a' || c=='e'|| c=='i'|| c=='o'|| c=='u')
+    {
+        //System.out.println("Is vowel. True");
+    
+    flag = 'v';
+    }
+    else if(c=='b' || c=='c'|| c=='d'|| c=='f'|| c=='g' || c=='h'|| c=='j'|| c=='k'|| c=='l' || c=='m'|| c=='n'|| c=='p'|| c=='q'|| c=='r'|| c=='s'|| c=='t'|| c=='v' || c=='w'|| c=='x'|| c=='y'|| c=='z')
+    {
+        // System.out.println("Not vowel. False");
+   flag = 'c';
+    }
+    return flag;
+
+}
+    static String RandomString(int n)
+    {
+        String str="";
+        Random r = new Random();
+       
+        
+        for(int i=0;i<n/2;i++)
+        {
+            char c = (char)(r.nextInt(26)+'a');
+            str+=c;
+             //System.out.println("c value is "+c);
+            if(checkVowel(c)=='v'){
+                char c1 = '\0';
+                while(checkVowel(c1)!='c')
+                {
+                     c1 = (char)(r.nextInt(26)+'a');
+                }
+                //System.out.println("c1 in consonant should be "+c1);
+                str+=c1;
+            }else if(checkVowel(c)=='c')
+            {
+                char c1 = '\0';
+                while(checkVowel(c1)!='v')
+                {
+                     c1 = (char)(r.nextInt(26)+'a');
+                }
+                // System.out.println("c1 in vowel should be "+c1);
+                str+=c1;
+            }
+        }
+        if(n%2 != 0)
+        {
+            //System.out.println("Last char "+str.charAt(n-2));
+            if(checkVowel(str.charAt(n-2))=='v')
+            {
+                char c1 = '\0';
+                while(checkVowel(c1)!='c')
+                {
+                     c1 = (char)(r.nextInt(26)+'a');
+                }
+               // System.out.println("c1 in consonant should be "+c1);
+                str+=c1;
+            }else if(checkVowel(str.charAt(n-2))=='c')
+            {
+                char c1 = '\0';
+                while(checkVowel(c1)!='v')
+                {
+                     c1 = (char)(r.nextInt(26)+'a');
+                }
+                // System.out.println("c1 in vowel should be "+c1);
+                str+=c1;
+            }
+        }
+        return str;
+    }
+    
+
+
+public static void main(String[] args)
+{
+    String name = RandomString(10);
+    System.out.println(name);
+}
+}
